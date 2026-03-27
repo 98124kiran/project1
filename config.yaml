@@ -1,0 +1,36 @@
+env:
+  num_edge_nodes: 5
+  num_task_types: 4
+  max_tasks_per_step: 3
+  max_queue_size: 20
+  max_steps: 200
+  task_arrival_rate: 0.7
+  node_failure_prob: 0.02
+  node_recovery_prob: 0.1
+  dynamic_load_std: 0.1
+  time_slot_duration: 1.0
+
+agent:
+  actor_lr: 0.0001
+  critic_lr: 0.0003
+  gamma: 0.95
+  tau: 0.01
+  buffer_size: 100000
+  batch_size: 256
+  hidden_dim: 256
+  num_layers: 3
+  noise_std: 0.1
+  noise_decay: 0.9995
+  min_noise_std: 0.01
+  update_every: 4
+  warmup_steps: 1000
+
+training:
+  num_episodes: 3000
+  eval_interval: 100
+  eval_episodes: 10
+  save_interval: 500
+  log_interval: 10
+  checkpoint_dir: checkpoints
+  log_dir: logs
+  seed: 42
