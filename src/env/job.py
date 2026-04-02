@@ -89,10 +89,16 @@ class Job:
     def total_remaining_time(self) -> float:
         return sum(op.remaining_time for op in self.operations[self.current_op_index:])
 
-    @property
-    def slack(self) -> float:
-        """Time remaining until deadline minus total processing time left."""
-        return self.deadline - self.total_remaining_time
+    def slack(self, current_time: float) -> float:
+        """
+        Laxity: how much extra time remains beyond the minimum needed to finish.
+
+        slack = (deadline - current_time) - total_remaining_processing_time
+
+        A negative value means the job cannot meet its deadline even if it
+        starts all remaining operations immediately.
+        """
+        return (self.deadline - current_time) - self.total_remaining_time
 
     # ------------------------------------------------------------------ #
     # Mutations                                                            #

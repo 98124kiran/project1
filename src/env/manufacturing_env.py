@@ -189,6 +189,14 @@ class ManufacturingEnv:
         self._prev_makespan: float = 0.0
         self._total_jobs_completed: int = 0
 
+        # Observation normalisation constants (computed once, reused every step)
+        self._obs_max_proc = cfg["max_processing_time"] * cfg["max_ops"]
+        self._obs_max_deadline = (
+            cfg["max_steps"] * cfg["dt"]        # latest possible current_time
+            + self._obs_max_proc                # + max processing
+            + cfg["max_deadline_slack"]         # + max slack
+        )
+
     # ------------------------------------------------------------------ #
     # Gym-like API                                                         #
     # ------------------------------------------------------------------ #
@@ -311,7 +319,7 @@ class ManufacturingEnv:
             return
 
         migrate_start = self.M + 1
-        migrate_end = self.M + self.num_agents - 1   # inclusive
+        migrate_end = self.M + self.num_agents - 1   # last migrate action index (inclusive)
 
         if migrate_start <= action <= migrate_end:
             # MIGRATE queue-head to a peer node
@@ -335,7 +343,7 @@ class ManufacturingEnv:
             job = node.dequeue()
             if job is not None:
                 job.status = JobStatus.DEFERRED
-                node.job_queue.append(job)   # re-append at back
+                node.requeue(job)
 
     # ------------------------------------------------------------------ #
     # Reward                                                               #
@@ -418,13 +426,9 @@ class ManufacturingEnv:
             key=lambda j: (-j.priority, j.deadline),
         )[: self.K]
 
-        # Normalisation constants
-        max_proc = self.cfg["max_processing_time"] * self.cfg["max_ops"]
-        max_deadline = self._current_time + self.cfg["max_deadline_slack"] + max_proc
-
         for job in sorted_jobs:
-            obs.append(min(job.total_remaining_time / max(max_proc, 1.0), 1.0))
-            obs.append(min(job.deadline / max(max_deadline, 1.0), 1.0))
+            obs.append(min(job.total_remaining_time / max(self._obs_max_proc, 1.0), 1.0))
+            obs.append(min(job.deadline / max(self._obs_max_deadline, 1.0), 1.0))
 
         # Pad with zeros if fewer than K jobs are visible
         padding = self.K - len(sorted_jobs)

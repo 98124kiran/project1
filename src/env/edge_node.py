@@ -75,6 +75,16 @@ class EdgeNode:
         self.job_queue.append(job)
         return True
 
+    def requeue(self, job: "Job") -> None:
+        """Append *job* to the back of the queue (used for DEFER action)."""
+        job.assigned_node = self.node_id
+        self.job_queue.append(job)
+
+    def requeue(self, job: Job) -> None:
+        """Append *job* to the back of the queue (used for DEFER action)."""
+        job.assigned_node = self.node_id
+        self.job_queue.append(job)
+
     def dequeue(self) -> Optional[Job]:
         """Remove and return the highest-priority job from the queue."""
         if not self.job_queue:
