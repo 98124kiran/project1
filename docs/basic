@@ -1,1 +1,21 @@
-
+Problem statement - 
+1 static scheduling in dynamic env
+2 real time replanning under distrubtion 
+3 multi - objective trade- offs
+4 large scaleable 
+5 partially observablitiy and uncertainity 
+//existing drl scheduler 
+//no general-purpose DRL framework that handles both scheduling and replanning in a unified manner.
+//uses a GNN + Attention architecture
+//Online fine-tuning
+expectation - 
+1  reduction in replanning time compared to exact re-optimization methods.
+2  improvement in schedule quality (makespan, tardiness) over rule-based dispatching heuristics
+3 Autonomous recovery from disruptions without human intervention
+4 generalizable, transferable policy deployable
+key challenges in morden manufacturing system - 
+//challenges in buliding intelligent agent for smart manufacturing edge computing system
+//challenges in buliding intelligent agent for smart manufacturing
+//manufacturing system challenges in context of smart manufACTURING ADAPTIVE SCHEDULING AND REPLANNING
+ **challenge is to develop a DRL agent that learns an online replanning policy capable of reassigning jobs, reordering operations, and recovering from disruptions within seconds, while minimizing total tardiness, makespan, and energy costs.
+DOMAIN-Manufacturing, Core Scheduling Problem- Job-shop / flow-shop , Primary Disruption-Machine failure, rush orders,    -Minimize makespan & tardiness
