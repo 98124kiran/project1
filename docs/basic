@@ -18,4 +18,14 @@ key challenges in morden manufacturing system -
 //challenges in buliding intelligent agent for smart manufacturing
 //manufacturing system challenges in context of smart manufACTURING ADAPTIVE SCHEDULING AND REPLANNING
  **challenge is to develop a DRL agent that learns an online replanning policy capable of reassigning jobs, reordering operations, and recovering from disruptions within seconds, while minimizing total tardiness, makespan, and energy costs.
-DOMAIN-Manufacturing, Core Scheduling Problem- Job-shop / flow-shop , Primary Disruption-Machine failure, rush orders,    -Minimize makespan & tardiness
+DOMAIN-Manufacturing, Core Scheduling Problem- Job-shop / flow-shop , Primary Disruption-Machine failure, rush orders,   OBJ -Minimize makespan & tardiness
+      -Edge task offloading                  =Edge task offloading                      =Device failure, energy depletion     =Minimize latency & energy waste
+//core scheduling problem in drl ,madrl SCHEDULER
+//DRL OBJ HIGH IN DEMAND
+REAL WORLD EXAMPLE EDGE COMPUTING IN SM
+*factory robots offloading quality inspection tasks
+//Robotic Quality Inspection & Defect Detection:
+//Edge-Driven Predictive Maintenance
+//Autonomous Mobile Robots (AMRs) for Logistics
+//Edge-AI for Assembly Quality
+//MULTI AGENT DRL OBJ HIGH IN DEMAND
