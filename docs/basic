@@ -29,3 +29,33 @@ REAL WORLD EXAMPLE EDGE COMPUTING IN SM
 //Autonomous Mobile Robots (AMRs) for Logistics
 //Edge-AI for Assembly Quality
 //MULTI AGENT DRL OBJ HIGH IN DEMAND
+
+//dynamic changes smart manufacturing
+//industry 5.0 and smart manufacturing CONTEXT
+/// Why cloud computing is insufficient and edge computing is needed
+Dynamic challenges on the factory floor
+Why DRL and multiagent DRL (MADRL) are the right approaches
+The need for adaptive replanning under disruptions
+
+//Smart manufacturing devices and edge server setup
+//problem in smart manufacturing SETUP
+//Challenges — Dynamic task arrival, node heterogeneity, uncertainty, replanning, scalability, and multi-objective optimization
+// cloud computing vs fog computing vs edge computing hybrid computing which one managing larger data sets fast and easily in smart manufacturing system for adaptive scheduling and rreplanning task-- 
+hybrid computing is suggested 
+**a smart manufacturing system requiring the combination of large dataset management, ultra-low-latency decision-making, multi-machine data aggregation, and long-term optimization for adaptive scheduling, Hybrid Computing (a combination of Edge/Fog and Cloud) is the best approach.
+// single centralized DRL agent faces limitations
+//suggeset distributing decision-making across multiple cooperative or competitive agents(in smart amnufacturing)
+//  redistributing tasks and reconfiguring schedules on the fly
+//Smart manufacturing plants consist of numerous heterogeneous device
+>> A Hierarchical Fractal Space NSGA-II-Based Cloud–Fog Collaborative Optimization Framework for Latency and Energy-Aware Task Offloading in Smart Manufacturing
+>> may -- AI-Driven Scheduling and Blockchain-Based Control for Digitalized Manufacturing Reference Smart and Sustainable Manufacturing Systems
+// Smart manufacturing plants consist of numerous heterogeneous device that continuously generate computational,deadlines, priority levels, and data sizes tasks requiring timely processing to meet stringent Quality of Service (QoS) requirements. list all of these task
+
+objective - 
+design 
+develop 
+evalutate 
+analyze
+
+Six key challenges: dynamic task arrival, node heterogeneity, environmental uncertainty, disruption-driven replanning, scalability, and multi-objective optimization
+Joint optimization objective in smart manufacturing
