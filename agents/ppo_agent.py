@@ -247,13 +247,10 @@ class RolloutBuffer:
         # Flatten time × agent
         obs_flat = self.observations.reshape(total, self.obs_size)
         # For the centralised critic, each agent at time t sees the same
-        # global obs.  Repeat global_obs[t] for each of the N agents.
-        gobs_flat = np.repeat(self.global_obs, N, axis=0).reshape(total, N * self.obs_size)
-        # Correct interleaving: row i belongs to time t=i//N, agent n=i%N
-        # We rebuild with correct ordering: (t*N + n) → global_obs[t]
-        gobs_flat2 = np.zeros((total, N * self.obs_size), dtype=np.float32)
+        # global obs.  Correct interleaving: (t*N + n) → global_obs[t]
+        gobs_flat = np.zeros((total, N * self.obs_size), dtype=np.float32)
         for t in range(T):
-            gobs_flat2[t * N: t * N + N] = self.global_obs[t]
+            gobs_flat[t * N: t * N + N] = self.global_obs[t]
         actions_flat = self.actions.reshape(total)
         lp_flat = self.log_probs.reshape(total)
         adv_flat = advantages.reshape(total)
@@ -267,7 +264,7 @@ class RolloutBuffer:
             idx = indices[start: start + batch_size]
             yield (
                 torch.as_tensor(obs_flat[idx]),
-                torch.as_tensor(gobs_flat2[idx]),
+                torch.as_tensor(gobs_flat[idx]),
                 torch.as_tensor(actions_flat[idx]),
                 torch.as_tensor(lp_flat[idx]),
                 torch.as_tensor(adv_flat[idx]),
