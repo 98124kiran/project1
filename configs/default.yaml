@@ -1,0 +1,111 @@
+# ============================================================
+# default.yaml — Project1: DRL Adaptive Scheduling
+# ============================================================
+# All hyperparameters for the environment, agents, hybrid
+# computing simulation, and experiments.
+# ============================================================
+
+# ----------------------------------------------------------
+# Environment (ManufacturingEnv) configuration
+# ----------------------------------------------------------
+env:
+  num_nodes: 3                  # N — number of edge nodes / agents
+  num_machines_per_node: 5      # M — machines per node
+  num_machine_types: 3          # distinct machine types
+  max_queue_length: 20          # max jobs buffered per node
+  num_observable_jobs: 5        # K — jobs visible in observation vector
+
+  dt: 1.0                       # time step duration (minutes)
+  max_steps: 500                # episode length
+
+  # Disturbance rates
+  lambda_fail: 0.01             # per-machine failure probability per step
+  mean_repair_time: 20.0        # mean repair duration (time units)
+  lambda_urgent: 0.05           # urgent job injection probability per step per node
+  latency_sigma: 0.5            # random-walk std for network latency (ms)
+
+  # Workload
+  lambda_job: 0.5               # mean normal jobs arriving per step (Poisson)
+  min_processing_time: 5.0
+  max_processing_time: 30.0
+  min_deadline_slack: 20.0
+  max_deadline_slack: 100.0
+  min_ops: 1
+  max_ops: 3
+
+  # Reward shaping coefficients
+  reward_alpha: 1.0             # penalty for makespan growth
+  reward_beta: 0.5              # reward for machine utilisation
+  reward_gamma: 2.0             # penalty per deadline violation
+  reward_delta: 0.3             # penalty for average edge latency
+  reward_epsilon: 1.0           # reward per completed job
+
+  seed: 42
+
+# ----------------------------------------------------------
+# MAPPO (Multi-Agent PPO) configuration
+# ----------------------------------------------------------
+mappo:
+  hidden_size: 128              # actor hidden layer size
+  critic_hidden_size: 256       # centralized critic hidden size
+  lr_actor: 3.0e-4
+  lr_critic: 1.0e-3
+  gamma: 0.99                   # discount factor
+  gae_lambda: 0.95              # GAE lambda for advantage estimation
+  clip_eps: 0.2                 # PPO clip epsilon
+  entropy_coef: 0.01            # entropy bonus coefficient
+  value_coef: 0.5               # value loss coefficient
+  max_grad_norm: 0.5            # gradient clipping max norm
+  n_epochs: 10                  # PPO update epochs per rollout
+  batch_size: 64                # mini-batch size for PPO updates
+  rollout_steps: 2048           # steps per rollout before update
+  total_timesteps: 500000       # total training timesteps
+  eval_interval: 20000          # evaluate every N timesteps
+
+# ----------------------------------------------------------
+# GNN Policy configuration
+# ----------------------------------------------------------
+gnn:
+  d_model: 64                   # node embedding dimension
+  n_heads: 4                    # multi-head attention heads
+  n_layers: 2                   # number of attention layers
+  dropout: 0.1
+  hidden_size: 128              # MLP hidden size for action head
+
+# ----------------------------------------------------------
+# Meta-learning (FOMAML) configuration
+# ----------------------------------------------------------
+meta:
+  inner_lr: 0.01                # inner-loop learning rate
+  inner_steps: 5                # gradient steps in inner loop per task
+  meta_lr: 3.0e-4               # outer-loop (meta) learning rate
+  adapt_steps: 3                # adaptation steps at test time
+
+# ----------------------------------------------------------
+# Hybrid computing simulation
+# ----------------------------------------------------------
+hybrid:
+  edge_inference_latency_ms: 5.0   # base latency for edge inference
+  cloud_aggregation_interval: 50   # cloud aggregates every N episodes
+  bandwidth_mbps: 10.0             # simulated edge-cloud bandwidth
+  model_size_mb: 1.0               # approximate policy model size in MB
+  federated_rounds: 100            # total federated aggregation rounds
+  local_steps: 10                  # local training steps before aggregation
+
+# ----------------------------------------------------------
+# Training script settings
+# ----------------------------------------------------------
+training:
+  seed: 42
+  device: "cpu"                 # "cpu" or "cuda"
+  save_interval: 50000          # save checkpoint every N timesteps
+  log_interval: 5000            # print log every N timesteps
+  n_eval_episodes: 10           # episodes for mid-training evaluation
+
+# ----------------------------------------------------------
+# Evaluation settings
+# ----------------------------------------------------------
+evaluation:
+  n_episodes: 50                # evaluation episodes per agent
+  n_seeds: 3                    # seeds for reproducibility
+  disruption_step: 100          # step at which disruption is injected in replan test
