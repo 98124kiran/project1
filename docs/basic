@@ -59,3 +59,174 @@ analyze
 
 Six key challenges: dynamic task arrival, node heterogeneity, environmental uncertainty, disruption-driven replanning, scalability, and multi-objective optimization
 Joint optimization objective in smart manufacturing
+
+//To design a multiagent deep reinforcement learning framework capable of adaptive scheduling and replanning in dynamic environments.
+//To investigate how cooperative and competitive multiagent strategies influence the quality and efficiency of scheduling decisions under uncertainty.
+//To evaluate the robustness and scalability of the proposed framework against dynamic disruptions compared to classical and single-agent baseline approaches.
+
+//Edge computing as a paradigm for low-latency industrial conTROL
+//Challenges in dynamic production scheduling
+//Limitations of centralized scheduling in dynamic manufacturing environments
+//Need for adaptive, real-time replanning under uncertainty 
+//Design a multi-agent DRL framework for distributed scheduling
+//Enable adaptive replanning at the edge without cloud dependency
+Minimize makespan, energy consumption, and latency
+
+
+2.1 Smart Manufacturing and Industry 4.0
+
+Cyber-Physical Systems (CPS), IoT, and digital twins
+Production scheduling challenges in smart factories
+2.2 Edge Computing in Industrial IoT
+
+Edge vs. cloud computing paradigms
+Fog computing and MEC (Mobile Edge Computing) architectures
+Latency, bandwidth, and reliability trade-offs
+2.3 Traditional Scheduling Approaches
+
+Heuristics and metaheuristics (GA, PSO, SA)
+Operations research methods (integer programming, constraint programming)
+Limitations under dynamic conditions
+2.4 Reinforcement Learning for Scheduling
+
+Single-agent RL in job-shop and flow-shop scheduling
+Q-learning, DQN, PPO, A3C applied to manufacturing
+Limitations of single-agent approaches in distributed settings
+2.5 Multi-Agent Reinforcement Learning (MARL)
+
+Cooperative, competitive, and mixed MARL frameworks
+CTDE (Centralized Training, Decentralized Execution) paradigm
+QMIX, MADDPG, MAPPO, and related algorithms
+2.6 Adaptive Replanning and Fault Tolerance
+
+Event-driven rescheduling vs. periodic rescheduling
+Robust and stochastic scheduling
+2.7 Research Gaps and Positioning
+
+Gap between MARL theory and edge-deployable industrial systems
+
+System Architecture and Problem Formulation
+3.1 Smart Manufacturing Environment Model
+
+Factory layout, machine types, job types, resource constraints
+Disturbance model (machine breakdowns, urgent orders, material delays)
+3.2 Edge Computing Infrastructure
+
+Edge node hierarchy: device layer, edge layer, cloud layer
+Communication topology and constraints
+Computational capacity and energy models
+3.3 Problem Formulation
+
+Formal definition of the dynamic job-shop/flexible manufacturing scheduling problem
+State space, action space, reward function design
+Multi-objective optimization criteria (makespan, energy, tardiness, throughput)
+3.4 Multi-Agent System Design
+
+Agent roles: machine agents, transport agents, coordinator agents
+Agent interaction protocol and communication model
+Partial observability and information sharing strategy
+3.5 System Architecture Overview
+
+Integration of MARL agents with edge nodes
+Digital twin interface for real-time state estimation
+Chapter 4: Multi-Agent Deep Reinforcement Learning Framework
+4.1 Algorithm Selection and Justification
+
+Comparison of CTDE vs. fully decentralized execution
+Selection rationale (e.g., MAPPO, QMIX, or a novel hybrid)
+4.2 Neural Network Architecture
+
+State encoder design (graph neural networks for machine-job relationships)
+Policy and value networks
+Attention mechanisms for inter-agent communication
+4.3 Reward Shaping
+
+Global vs. local reward signals
+Reward decomposition strategies for cooperative behavior
+Penalty functions for constraint violations
+4.4 Training Methodology
+
+Experience replay and prioritized sampling
+Curriculum learning for progressive complexity
+Sim-to-real transfer considerations
+4.5 Adaptive Replanning Module
+
+Trigger mechanisms for replanning (event-based, threshold-based)
+Warm-start policy transfer for rapid adaptation
+Online fine-tuning at the edge under resource constraints
+4.6 Edge Deployment Optimization
+
+Model compression (quantization, pruning, distillation)
+Inference latency and memory footprint analysis
+Chapter 5: Simulation Environment and Experimental Setup
+5.1 Simulation Platform Design
+
+Manufacturing simulation environment (e.g., SimPy, OpenAI Gym custom env)
+Edge network simulation (ns-3, iFogSim, or custom)
+Digital twin integration
+5.2 Benchmark Scenarios
+
+Static scheduling baseline (no disturbances)
+Dynamic scenarios: machine failures, job insertions, priority changes
+Scalability tests: varying number of machines, jobs, and agents
+5.3 Baselines and Comparison Methods
+
+Dispatching rules (SPT, EDD, FIFO)
+Single-agent DRL (DQN, PPO)
+Centralized MARL (oracle)
+State-of-the-art methods from literature
+5.4 Evaluation Metrics
+
+Makespan, mean tardiness, throughput
+Replanning response time
+Communication overhead, edge CPU/memory usage
+Energy consumption
+5.5 Hyperparameter Configuration and Ablation Study Design
+
+Chapter 6: Results and Analysis
+6.1 Scheduling Performance
+
+Comparison against baselines across static and dynamic scenarios
+Convergence behavior and training stability
+6.2 Adaptive Replanning Performance
+
+Response time and recovery quality under disturbances
+Comparison of trigger strategies
+6.3 Scalability Analysis
+
+Performance vs. number of agents and problem size
+Communication overhead scaling
+6.4 Edge Deployment Results
+
+Inference latency on target edge hardware
+Model compression impact on performance
+6.5 Ablation Studies
+
+Impact of reward shaping, communication topology, network architecture
+Contribution of each module (replanning trigger, warm-start, etc.)
+6.6 Discussion
+
+Strengths and limitations of the proposed approach
+Practical deployment considerations
+
+7.1 Implementation Details
+
+Edge hardware used (e.g., NVIDIA Jetson, Intel NUC)
+System integration with PLC/SCADA or OPC-UA
+7.2 Results and Observations
+
+Real or emulated deployment performance
+Comparison with production system baseline
+
+8.3 Limitations of the Current Work 8.4 Future Research Directions
+Federated MARL for privacy-preserving multi-factory scheduling
+Integration with large language models for explainable scheduling
+Continual learning and lifelong adaptation
+Standardized edge MARL benchmarks for manufacturing
+
+//CIRP Conference on Manufacturing System
+//exploration/analysis/plan about Multi-Agent Deep Reinforcement Learning (MADRL) applied to adaptive scheduling and replanning in smart manufacturing.
+//ieee case 2026
+ training distributed agents to make real-time, collaborative decisions.
+Smart manufacturing scheduling: A literature review
+Automated process planning and dynamic scheduling for smart manufacturing: A systematic literature review
